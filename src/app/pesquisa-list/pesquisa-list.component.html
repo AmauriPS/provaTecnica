@@ -16,6 +16,8 @@
         <input type="text" class="form-control" formControlName="email">
     </div>
     <button type="submit" class="btn btn-primary" (click)="findByPesquisa()" >Pesquisar</button>
+    <button type="submit" class="btn btn-primary" (click)="limpar()" >Limpar</button>
+    <button type="submit" class="btn btn-primary"  >Novo Sistema</button>
 </form>
 
 <!-- Lista -->
@@ -45,8 +47,7 @@
       <td>{{ pesquisa.status }}</td>
       <td class="text-right">
         <!-- Botão para editar -->
-        <button class="btn btn-outline-primary btn-sm mr-1"
-          [routerLink]="['/#', pesquisa.id]">
+        <button class="btn btn-outline-primary btn-sm mr-1">
           <i class="fas fa-edit">Editar</i>
         </button>
       </td>

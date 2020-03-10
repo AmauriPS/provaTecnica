@@ -11,7 +11,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class PesquisaListComponent implements OnInit {
 
   // Declarações de variáveis
-  // pesquisas: Pesquisa[];
   pesquisa: Pesquisa;
   pesquisas: Pesquisa[];
   pesquisaForm: FormGroup;
@@ -21,30 +20,31 @@ export class PesquisaListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.pesquisas = []
-    this.pesquisa= {id: 1,
-      descricao: "Descrição do objeto",
-      sigla: "Sigla do objeto",
-      email: "email do negócio",
-      url: "url do negóço",
-      status: "status do negoço"
-    };
+    this.pesquisas = [];
+    this.pesquisa = new Pesquisa;
 
     // Reactive forms
+    this.iniciarFormulario()
+  }
+
+  findByPesquisa(){
+    // Busca todas os resultados
+    this.pesquisaService.findByPesquisa(this.pesquisaForm.value)
+      .subscribe(resultado => this.pesquisas = resultado);
+  }
+
+  limpar(){
+    this.iniciarFormulario()
+    this.pesquisas = []
+  }
+
+  iniciarFormulario(){
     this.pesquisaForm = this.builder.group({
       id: [],
       descricao: ['', Validators.required],
       sigla: ['', Validators.required],
       email: ['', Validators.required],
     },{});
-  }
-
-  
-  findByPesquisa(){
-    this.pesquisas = [this.pesquisa, this.pesquisa]
-    // Busca todas os resultados
-    this.pesquisaService.findByPesquisa(this.pesquisa)
-      .subscribe(resultado => resultado);
   }
 
 }

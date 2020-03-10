@@ -16,7 +16,7 @@ const httpOptions = {
   export class PesquisaService {
   
     // Endereço da API
-    url = `${environment.production}/pesquisa`;
+    url = `http://localhost:8080/api/pesquisa`;
   
     constructor(private http: HttpClient) { }
   
@@ -26,8 +26,8 @@ const httpOptions = {
     }
   
     // Método para buscar por pesquisa
-    findByPesquisa(pesquisa: Pesquisa): Observable<Pesquisa> {
-      return this.http.get<Pesquisa>(`${this.url}/${pesquisa}`);
+    findByPesquisa(pesquisa: Pesquisa): Observable<Pesquisa[]> {
+      return this.http.post<Pesquisa[]>(`${this.url}`, JSON.stringify(pesquisa), httpOptions);
     }
   }
   
