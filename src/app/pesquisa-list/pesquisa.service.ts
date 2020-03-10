@@ -25,23 +25,9 @@ const httpOptions = {
       return this.http.get<Pesquisa[]>(`${this.url}`);
     }
   
-    // Método para buscar por ID
-    findById(id: number): Observable<Pesquisa> {
-      return this.http.get<Pesquisa>(`${this.url}/${id}`);
-    }
-  
-    // Método para salvar
-    save(carro: Pesquisa): Observable<Pesquisa> {
-      if(carro.id){
-        return this.http.put<Pesquisa>(`${this.url}`, JSON.stringify(Pesquisa), httpOptions);
-      } else {
-        return this.http.post<Pesquisa>(`${this.url}`, JSON.stringify(Pesquisa), httpOptions);
-      }
-    }
-  
-    // Método para deletar por ID
-    deteleById(id: number): Observable<any> {
-      return this.http.delete(`${this.url}/${id}`);
+    // Método para buscar por pesquisa
+    findByPesquisa(pesquisa: Pesquisa): Observable<Pesquisa> {
+      return this.http.get<Pesquisa>(`${this.url}/${pesquisa}`);
     }
   }
   

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pesquisa } from './pesquisa';
 import { PesquisaService } from './pesquisa.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // import { AlertService } from 'src/app/core/alert/alert.service';
  
 
@@ -12,37 +13,46 @@ import { PesquisaService } from './pesquisa.service';
 export class PesquisaListComponent implements OnInit {
 
   // Declarações de variáveis
-  pesquisa: Pesquisa[];
+  // pesquisas: Pesquisa[];
+  pesquisa: Pesquisa;
+  pesquisas: Pesquisa[];
+  pesquisaForm: FormGroup;
   
-  constructor(private pesquisaService: PesquisaService) { }
-              // private alertService:AlertService
+  constructor(private pesquisaService: PesquisaService,
+    private builder: FormBuilder) { }
 
   ngOnInit() {
 
-    // Busca todas as pesquisa
-    this.pesquisaService.findAll()
-      .subscribe(pesquisa => this.pesquisa = pesquisa);
+    this.pesquisa= {id: 1,
+      descricao: "Descrição do objeto",
+      sigla: "Sigla do objeto",
+      email: "email do negócio",
+      url: "url do negóço",
+      status: "status do negoço"
+    };
+
+    this.pesquisas = [this.pesquisa, this.pesquisa]
+
+    // Instancia uma nova pesquisa
+    // this.pesquisa = new Pesquisa();
+
+    console.log(this.pesquisas)
+
+    // Reactive forms
+    this.pesquisaForm = this.builder.group({
+      id: [],
+      descricao: ['', Validators.required],
+      sigla: ['', Validators.required],
+      email: ['', Validators.required],
+    },{});
   }
 
-  // Método para deleta uma pesquisa
-  onDelete(id: number){
-
-    // Deleta instituição na API
-    this.pesquisaService.deteleById(id)
-      .subscribe(() => {
-
-        // Remove a instituição da lista
-        this.pesquisa = this.pesquisa
-          .filter(pesquisa => pesquisa.id !== id);
-
-        // Alerta com a mensagem de sucesso
-        // this.alertService.success("pesquisa excluída com sucesso!");
-      },
-      (exception) => {
-        // Alerta com mensagem de erro
-        // this.alertService.error("Desculpe, mas não é possível excluir a pesquisa !");
-      });
+  
+  findByPesquisa(){
+    return this.pesquisas;
+    // Busca todas os resultados
+    this.pesquisaService.findByPesquisa(this.pesquisa)
+      .subscribe(resultado => resultado);
   }
 
- 
 }

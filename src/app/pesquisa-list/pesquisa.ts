@@ -1,8 +1,9 @@
 export class Pesquisa
 {
     id:number;
-    descricao:String;
-    sigla:String;
-    email:String;
-
+    descricao:string;
+    sigla:string;
+    email:string;
+    url:string;
+    status:string;
 }
