@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pesquisa } from './pesquisa';
 import { PesquisaService } from './pesquisa.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-// import { AlertService } from 'src/app/core/alert/alert.service';
- 
+import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
 
 @Component({
   selector: 'app-pesquisa-list',
@@ -23,6 +21,7 @@ export class PesquisaListComponent implements OnInit {
 
   ngOnInit() {
 
+    this.pesquisas = []
     this.pesquisa= {id: 1,
       descricao: "Descrição do objeto",
       sigla: "Sigla do objeto",
@@ -30,13 +29,6 @@ export class PesquisaListComponent implements OnInit {
       url: "url do negóço",
       status: "status do negoço"
     };
-
-    this.pesquisas = [this.pesquisa, this.pesquisa]
-
-    // Instancia uma nova pesquisa
-    // this.pesquisa = new Pesquisa();
-
-    console.log(this.pesquisas)
 
     // Reactive forms
     this.pesquisaForm = this.builder.group({
@@ -49,7 +41,7 @@ export class PesquisaListComponent implements OnInit {
 
   
   findByPesquisa(){
-    return this.pesquisas;
+    this.pesquisas = [this.pesquisa, this.pesquisa]
     // Busca todas os resultados
     this.pesquisaService.findByPesquisa(this.pesquisa)
       .subscribe(resultado => resultado);
