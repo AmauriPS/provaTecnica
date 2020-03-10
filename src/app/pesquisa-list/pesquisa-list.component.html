@@ -1,0 +1,65 @@
+<!-- Títuto da página -->
+<h1 class="page-title">Pesquisar Sistema</h1>
+
+<!-- Opções e Filtro -->
+<div class="form-group clearfix">
+  <div class="float-left">
+  
+    <!-- Botão para cadastrar -->
+    <button class="btn btn-primary mr-1" 
+      routerLink="/carro/novo">
+      <i class="fas fa-plus"></i> Cadastrar
+    </button>
+  </div>
+  <div class="float-right">
+      <!-- <input type="text" class="form-control" placeholder="Filtrar por modelo..." [(ngModel)]="busca"> -->
+  </div>
+</div>
+
+<!-- Lista de carros -->
+<table class="table table-border table-hover">
+  <!-- Cabeçalho da tabela -->
+  <thead>
+    <tr>
+      <th>Filtro de consulta</th>
+      <th>Descrição</th>
+      <th class="text-center">Sigla</th>
+      <th class="text-center">E-mail de atendimento</th>
+      <th></th>
+      <th class="text-right"></th>
+    </tr>
+  </thead>
+  <!-- Corpo da tabela -->
+  <tbody>
+    <tr *ngIf="pesquisa?.length == 0">
+      <td colspan="6"><i class="fas fa-inbox"></i> Nenhum registro encontrado!</td>
+    </tr>
+    <tr> <!-- *ngFor="let pesquisa of pesquisa | pesquisaFilter : busca"-->
+      <td>
+        <!-- Botão para visualizar -->
+        <button class="btn btn-link" 
+          [routerLink]="['/pesquisa/visualizar', pesquisa.id]">
+          <!-- {{ pesquisa.sigla }} -->
+        </button>
+      </td>
+      <td>{{ pesquisa.descricao }}</td>
+      <!-- <td class="text-center">{{ pesquisa.sigla }}</td> -->
+      <td class="text-center">{{ pesquisa.email }}</td>
+      <td>{{ pesquisa.sigla }}</td>
+      <td class="text-right">
+        
+        <!-- Botão para editar -->
+        <button class="btn btn-outline-primary btn-sm mr-1"
+          [routerLink]="['/pesquisa/editar', pesquisa.id]">
+          <i class="fas fa-edit"></i>
+        </button>
+
+        <!-- Botão para deletar -->
+        <button class="btn btn-outline-danger btn-sm"
+          (click)="onDelete(pesquisa.id)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
