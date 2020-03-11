@@ -1,0 +1,24 @@
+<!-- Título da página -->
+<h1 class="page-title">{{ titulo }}</h1>
+
+<!-- Formulário -->
+<form [formGroup]="pesquisaForm">
+  <div class="form-group">
+      <label for="descricao">Descrição</label>
+      <input type="text" class="form-control" formControlName="descricao">
+  </div>
+    <div class="form-group">
+        <label for="sigla">Sigla</label>
+        <input type="text" class="form-control" formControlName="sigla">
+    </div>
+    <div class="form-group">
+        <label for="email">E-mail de atendimento do sistema</label>
+        <input type="text" class="form-control" formControlName="email">
+    </div>
+    <div class="form-group">
+        <label for="url">URL</label>
+        <input type="text" class="form-control" formControlName="url">
+    </div>
+    <button type="submit" class="btn btn-primary" [routerLink]="['/listar']" >Voltar</button>
+    <button type="submit" class="btn btn-primary" (click)="salvar(pesquisaForm.value)" >Salvar</button>
+</form>

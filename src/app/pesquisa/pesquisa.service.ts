@@ -1,6 +1,5 @@
 import { HttpHeaders,HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { Pesquisa } from './pesquisa';
 import { Observable } from 'rxjs';
 
@@ -16,7 +15,7 @@ const httpOptions = {
   export class PesquisaService {
   
     // Endereço da API
-    url = `http://localhost:8080/api/pesquisa`;
+    url = `http://localhost:8080/api`;
   
     constructor(private http: HttpClient) { }
   
@@ -27,7 +26,12 @@ const httpOptions = {
   
     // Método para buscar por pesquisa
     findByPesquisa(pesquisa: Pesquisa): Observable<Pesquisa[]> {
-      return this.http.post<Pesquisa[]>(`${this.url}`, JSON.stringify(pesquisa), httpOptions);
+      return this.http.post<Pesquisa[]>(`${this.url}/pesquisa`, JSON.stringify(pesquisa), httpOptions);
+    }
+
+    // Método para salvar por pesquisa
+    salvar(pesquisa: Pesquisa): Observable<Pesquisa> {
+      return this.http.post<Pesquisa>(`${this.url}/salvar`, JSON.stringify(pesquisa), httpOptions);
     }
   }
   

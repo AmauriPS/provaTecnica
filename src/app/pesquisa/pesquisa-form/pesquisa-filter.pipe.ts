@@ -1,5 +1,5 @@
 import { PipeTransform, Pipe } from '@angular/core';
-import { Pesquisa } from './pesquisa';
+import { Pesquisa } from '../pesquisa';
 
 @Pipe({
     name: 'pesquisaFilter'

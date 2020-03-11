@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Pesquisa } from './pesquisa';
-import { PesquisaService } from './pesquisa.service';
+import { Pesquisa } from '../pesquisa';
+import { PesquisaService } from '../pesquisa.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
 
 @Component({
